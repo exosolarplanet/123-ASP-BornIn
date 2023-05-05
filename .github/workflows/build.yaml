@@ -7,3 +7,9 @@ jobs:
     steps:
       - name: Repo Checkout
         uses: actions/checkout@v3
+
+      - name: Java setup
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu' 
+          java-version: '17'
