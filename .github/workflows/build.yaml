@@ -14,5 +14,15 @@ jobs:
           distribution: 'zulu' 
           java-version: '17'
 
+      - name: Unit tests
+        run: ./gradlew clean test
+
+      - name: Upload unit test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit-test-report
+          path: /build/reports/tests/test/index.html
+
       - name: Gradle build
         run: ./gradlew build
+
