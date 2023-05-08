@@ -11,11 +11,5 @@ import java.time.LocalDate;
 
 public interface BirthdayTableRepository extends JpaRepository<BirthdayTable, String> {
 
-    @Transactional
-    @Modifying
-    @Query(value = "INSERT INTO BIRTHDAY VALUES (:username, :birthday)", nativeQuery = true)
-    void addBirthday(@Param("username") String username, @Param("birthday") LocalDate birthday);
-
-    @Query(value = "SELECT * FROM birthday " + "WHERE username like %:username", nativeQuery = true)
-    BirthdayTable findBirthday(@Param("username") String username);
+    BirthdayTable findByUsername(String username);
 }

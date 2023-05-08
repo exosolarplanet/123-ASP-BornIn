@@ -25,7 +25,6 @@ public class BirthdayTable {
         this.birthday = birthday;
     }
 
-    public String getUsername() { return username; }
-
     public LocalDate getBirthday() { return birthday; }
+
 }

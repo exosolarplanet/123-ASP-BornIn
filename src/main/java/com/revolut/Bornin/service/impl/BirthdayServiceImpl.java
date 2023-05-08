@@ -17,18 +17,9 @@ public class BirthdayServiceImpl implements BirthdayService {
     }
 
     @Override
-    public void persistBirthdayResults(String username, LocalDate birthday) {
-        try {
-            birthdayTableRepository.addBirthday(username, birthday);
-        } catch (Exception e) {
-            System.out.println("cannot persist");
-        }
-    }
-
-    @Override
-    public BirthdayTable getBirthdayResults(String username){
-        return birthdayTableRepository.findBirthday(username);
-
+    public LocalDate getBirthdayResults(String username){
+        BirthdayTable birthdayTable = birthdayTableRepository.findByUsername(username);
+        return birthdayTable.getBirthday();
     }
 
     @Override
