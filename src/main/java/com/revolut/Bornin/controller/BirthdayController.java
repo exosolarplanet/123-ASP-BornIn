@@ -57,11 +57,10 @@ public class BirthdayController {
             return ResponseEntity.badRequest().body(String.format("No date of birth information can be found for username %s", username));
         }
 
-        if (birthday.isEqual(LocalDate.now())){
+        Integer noDays = birthdayService.noOfDaysUntilBirthday(birthday);
+        if ( noDays==0 ){
             return ResponseEntity.ok(String.format("Hello, %s! Happy birthday!", username));
         }
-
-        Integer noDays = birthdayService.noOfDaysUntilBirthday(birthday);
         return ResponseEntity.ok(String.format("Hello, %s! Your birthday is in %d day(s)",username, noDays));
 
     }
