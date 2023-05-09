@@ -1,8 +1,9 @@
-//package com.revolut.Bornin.service;
+package com.revolut.Bornin.service;
 //
 //import com.revolut.Bornin.BorninApplication;
 //import com.revolut.Bornin.jpa.repository.BirthdayTableRepository;
 //import com.revolut.Bornin.jpa.table.BirthdayTable;
+//import org.junit.Ignore;
 //import org.junit.jupiter.api.Test;
 //import org.junit.runner.RunWith;
 //import org.mockito.Mock;
@@ -18,6 +19,8 @@
 //import static org.assertj.core.api.Assertions.assertThat;
 //import static org.mockito.Mockito.when;
 //
+//@SpringBootTest
+//@Ignore
 //public class BirthdayServiceTest {
 //
 //    @Autowired

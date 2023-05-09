@@ -36,29 +36,29 @@ dependencies {
 
 }
 
-testing {
-	suites {
-		test {
-			useJUnitJupiter()
-		}
-		integrationTest(JvmTestSuite) {
-			dependencies {
-				implementation project()
-			}
-			targets {
-				all {
-					testTask.configure {
-						shouldRunAfter(test)
-					}
-				}
-			}
-		}
-	}
-}
-
-
-//tasks.named('test') {
-//	useJUnitPlatform()
+//testing {
+//	suites {
+//		test {
+//			useJUnitJupiter()
+//		}
+//		integrationTest(JvmTestSuite) {
+//			dependencies {
+//				implementation project()
+//			}
+//			targets {
+//				all {
+//					testTask.configure {
+//						shouldRunAfter(test)
+//					}
+//				}
+//			}
+//		}
+//	}
 //}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
 
 

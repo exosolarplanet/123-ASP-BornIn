@@ -1,15 +1,19 @@
-//package com.revolut.Bornin.jpa;
+package com.revolut.Bornin.jpa;
 //
 //import com.revolut.Bornin.jpa.repository.BirthdayTableRepository;
 //import com.revolut.Bornin.jpa.table.BirthdayTable;
+//import org.junit.Ignore;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.context.SpringBootTest;
 //
 //
 //import java.time.LocalDate;
 //
 //import static org.assertj.core.api.Assertions.assertThat;
 //
+//@SpringBootTest
+//@Ignore
 //public class JpaTests {
 //
 //    @Autowired
