@@ -22,7 +22,7 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           project_id: 'rev-dev-project'
-          credentials_json: ${{ secrets.SERVICE_ACCOUNT ))
+          credentials_json: ${{ secrets.SERVICE_ACCOUNT }}
 
       - name: Hydrate environment
         run: |-
