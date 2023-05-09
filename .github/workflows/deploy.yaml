@@ -33,6 +33,14 @@ jobs:
           export DB_USERNAME=${{ secrets.DB_USERNAME }}
           export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           export DB_NAME=${{ secrets.DB_NAME }}
+      
+      - name: Configure app.yaml
+        run: |-
+          pwd
+          sed -i 's/DB_USER/'${{secrets.DB_USERNAME}}'/g' /src/main/appengine/app.yaml
+          sed -i 's/DB_PASS/'${{secrets.DB_PASSWORD}}'/g' /src/main/appengine/app.yaml
+          sed -i 's/DB_NAME/'${{secrets.DB_NAME}}'/g' /src/main/appengine/app.yaml
+
 
       - name: Unit tests
         run: ./gradlew clean test
