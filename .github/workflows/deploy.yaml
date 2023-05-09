@@ -17,8 +17,8 @@ jobs:
       - name: Authenticate to GCP
         uses: 'google-github-actions/auth@v1'
         with:
-          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+          project_id: 'rev-dev-project'
+          credentials_json: ${{ secrets.SERVICE_ACCOUNT ))
 
       - name: Hydrate environment
         run: |-
