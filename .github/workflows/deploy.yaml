@@ -1,5 +1,9 @@
-name: Build Application
-on: workflow_dispatch
+name: Deploy Application
+on: 
+  workflow_dispatch:
+    inputs:
+      deploy:
+        type: boolean
 
 jobs:
   build:
