@@ -7,3 +7,8 @@ handlers:
     secure: always
     redirect_http_response_code: 301
     script: auto
+
+env_variables:
+  DB_NAME: ${DB_NAME}
+  DB_USERNAME: ${DB_USERNAME}
+  DB_PASSWORD: ${DB_PASSWORD}
