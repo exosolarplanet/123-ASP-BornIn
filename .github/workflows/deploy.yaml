@@ -1,1 +1,41 @@
+name: Build Application
+on: workflow_dispatch
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repo Checkout
+        uses: actions/checkout@v3
+
+      - name: Java setup
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu' 
+          java-version: '17'
+      
+      - name: Authenticate to GCP
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+
+      - name: Hydrate environment
+        run: |-
+          export DB_USERNAME=${{ secrets.DB_USERNAME }}
+          export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          export DB_NAME=${{ secrets.DB_NAME }}
+
+      - name: Unit tests
+        run: ./gradlew clean test
+
+      - name: Upload unit test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit-test-report
+          path: /build/reports/tests/test/index.html
+
+      - name: Gradle build
+        run: ./gradlew build
+      
+      
