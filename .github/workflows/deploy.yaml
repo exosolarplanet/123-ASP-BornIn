@@ -25,10 +25,14 @@ jobs:
           credentials_json: ${{ secrets.SERVICE_ACCOUNT }}
 
       - name: Hydrate environment
+        env:
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
         run: |-
-          export db_user=${{ secrets.DB_USERNAME }}
-          export db_pass=${{ secrets.DB_PASSWORD }}
-          export db_name=${{ secrets.DB_NAME }}
+          export DB_USERNAME=${{ secrets.DB_USERNAME }}
+          export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          export DB_NAME=${{ secrets.DB_NAME }}
 
       - name: Unit tests
         run: ./gradlew clean test
