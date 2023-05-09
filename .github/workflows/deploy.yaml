@@ -42,12 +42,12 @@ jobs:
       - name: Gradle build
         run: ./gradlew build
         
-      - name: 'Set up Cloud SDK'
+      - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v1'
         with:
           version: '>= 363.0.0'
 
-      - name: 'Use gcloud CLI'
-        run: 'gcloud info'
+      - name: Update App Version
+        run: 'gcloud app deploy'
       
       
