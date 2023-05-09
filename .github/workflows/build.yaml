@@ -14,6 +14,12 @@ jobs:
           distribution: 'zulu' 
           java-version: '17'
 
+      - name: Hydrate environment
+        run: |-
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+          echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
+
       - name: Unit tests
         run: ./gradlew clean test
 
