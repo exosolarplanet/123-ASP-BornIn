@@ -16,9 +16,9 @@ jobs:
 
       - name: Hydrate environment
         run: |-
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
-          echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
+          export DB_USERNAME=${{ secrets.DB_USERNAME }}
+          export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          export DB_NAME=${{ secrets.DB_NAME }}
 
       - name: Unit tests
         run: ./gradlew clean test
