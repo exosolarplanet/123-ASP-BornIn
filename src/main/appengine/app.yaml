@@ -9,6 +9,6 @@ handlers:
     script: auto
 
 env_variables:
-  DB_NAME: ${DB_NAME}
-  DB_USERNAME: ${DB_USERNAME}
-  DB_PASSWORD: ${DB_PASSWORD}
+  db_name: ${DB_NAME}
+  db_user: ${DB_USERNAME}
+  db_pass: ${DB_PASSWORD}
