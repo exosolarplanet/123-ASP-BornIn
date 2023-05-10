@@ -12,4 +12,9 @@ public class BasicController {
         return ResponseEntity.ok("healthy");
     }
 
+    @GetMapping("/health")
+    public ResponseEntity appEngineMainPage(){
+        return ResponseEntity.noContent().build();
+    }
+
 }

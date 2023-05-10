@@ -8,6 +8,9 @@ handlers:
     redirect_http_response_code: 301
     script: auto
 
+inbound_services:
+  - warmup
+
 env_variables:
   db_name: DB_NAME
   db_user: DB_USER
