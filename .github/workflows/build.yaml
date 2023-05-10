@@ -1,5 +1,9 @@
 name: Build Application
-on: push
+on:
+  push:
+    branches:
+      - 'feature/*'
+      - 'main'
 
 jobs:
   build:
@@ -19,6 +23,7 @@ jobs:
           export DB_USERNAME=${{ secrets.DB_USERNAME }}
           export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           export DB_NAME=${{ secrets.DB_NAME }}
+          export DB_IP=${{ secrets.DB_IP }}
 
       - name: Unit tests
         run: ./gradlew clean test

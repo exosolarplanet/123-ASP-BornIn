@@ -15,17 +15,17 @@ import java.time.LocalDate;
 @RestController
 public class BirthdayController {
 
-    private final BirthdayService birthdayService;
-
     @Autowired
     private BirthdayTableRepository birthdayTableRepository;
 
     Logger logger = LoggerFactory.getLogger(BirthdayController.class);
 
+    private final BirthdayService birthdayService;
+
     public BirthdayController(BirthdayService birthdayService) { this.birthdayService = birthdayService; }
 
     @PutMapping("/hello/{username}")
-    public ResponseEntity<String> saveBirthday(@PathVariable String username, @RequestParam(name = "dateofBirth") LocalDate birthday ) {
+    public ResponseEntity saveBirthday(@PathVariable String username, @RequestParam(name = "dateofBirth") LocalDate birthday ) {
 
         if (birthday.isAfter(LocalDate.now())) {
             logger.warn("Incorrect date of birth: date of birth is in the future");
@@ -39,10 +39,13 @@ public class BirthdayController {
         try {
             birthdayTableRepository.save(new BirthdayTable(username, birthday));
         } catch(Exception e){
+            logger.warn("Unable to save date of birth");
+            e.getStackTrace();
             return ResponseEntity.internalServerError().body("Unable to save date of birth");
         }
 
-        return ResponseEntity.ok("Birthday information saved!"); //remove message
+        logger.info("Saved birthday successfully!");
+        return ResponseEntity.noContent().build();
 
     }
 
@@ -53,15 +56,18 @@ public class BirthdayController {
         try {
             birthday = birthdayService.getBirthdayResults(username);
         }catch (NullPointerException e){
+            logger.warn(String.format("Unable to get birthday information for user \"&s\"", username));
             e.getStackTrace();
-            return ResponseEntity.badRequest().body(String.format("No date of birth information can be found for username %s", username));
+            return ResponseEntity.badRequest().body(String.format("{ \"message\": \"No date of birth information can be found for username %s\" }", username));
         }
 
         Integer noDays = birthdayService.noOfDaysUntilBirthday(birthday);
+        logger.warn(String.format("Number of days left until birthday for %s: %d", username, noDays));
+
         if ( noDays==0 ){
-            return ResponseEntity.ok(String.format("Hello, %s! Happy birthday!", username));
+            return ResponseEntity.ok(String.format("{ \"message\": \"Hello, %s! Happy birthday!\" }", username));
         }
-        return ResponseEntity.ok(String.format("Hello, %s! Your birthday is in %d day(s)",username, noDays));
+        return ResponseEntity.ok(String.format("{ \"message\": \"Hello, %s! Your birthday is in %d day(s)\" }",username, noDays));
 
     }
 }

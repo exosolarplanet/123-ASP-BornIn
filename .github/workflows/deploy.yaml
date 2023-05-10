@@ -23,12 +23,13 @@ jobs:
         with:
           project_id: 'rev-dev-project'
           credentials_json: ${{ secrets.SERVICE_ACCOUNT }}
-
-      - name: Hydrate environment
+      
+      - name: Configure app.yaml
         run: |-
-          export DB_USERNAME=${{ secrets.DB_USERNAME }}
-          export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-          export DB_NAME=${{ secrets.DB_NAME }}
+          sed -i 's/DB_USER/'${{secrets.DB_USERNAME}}'/g' ./src/main/appengine/app.yaml
+          sed -i 's/DB_PASS/'${{secrets.DB_PASSWORD}}'/g' ./src/main/appengine/app.yaml
+          sed -i 's/DB_NAME/'${{secrets.DB_NAME}}'/g' ./src/main/appengine/app.yaml
+          sed -i 's/DB_IP/'${{secrets.DB_IP}}'/g' ./src/main/appengine/app.yaml
 
       - name: Unit tests
         run: ./gradlew clean test
@@ -41,5 +42,11 @@ jobs:
 
       - name: Gradle build
         run: ./gradlew build
-      
-      
+        
+      - name: Set up Cloud SDK
+        uses: 'google-github-actions/setup-gcloud@v1'
+        with:
+          version: '>= 363.0.0'
+
+      - name: Update App Version
+        run: 'gcloud app deploy'
