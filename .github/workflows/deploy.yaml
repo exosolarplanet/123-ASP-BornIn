@@ -1,9 +1,7 @@
 name: Deploy Application
 on: 
-  workflow_dispatch:
-    inputs:
-      deploy:
-        type: boolean
+  release:
+    types: [published]
 
 jobs:
   build:
