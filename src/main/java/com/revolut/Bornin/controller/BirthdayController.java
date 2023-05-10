@@ -25,7 +25,7 @@ public class BirthdayController {
     public BirthdayController(BirthdayService birthdayService) { this.birthdayService = birthdayService; }
 
     @PutMapping("/hello/{username}")
-    public ResponseEntity saveBirthday(@PathVariable String username, @RequestParam(name = "dateofBirth") LocalDate birthday ) {
+    public ResponseEntity saveBirthday(@PathVariable String username, @RequestParam(name = "dateOfBirth") LocalDate birthday ) {
 
         if (birthday.isAfter(LocalDate.now())) {
             logger.warn("Incorrect date of birth: date of birth is in the future");
