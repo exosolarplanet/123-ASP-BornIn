@@ -1,27 +1,44 @@
 package com.revolut.Bornin;
 
 
-// import com.revolut.Bornin.controller.BirthdayController;
+import com.revolut.Bornin.controller.BirthdayController;
 
-// import org.junit.jupiter.api.Test;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.context.SpringBootTest;
+import com.revolut.Bornin.jpa.JpaTests;
+import com.revolut.Bornin.service.BirthdayService;
+import com.revolut.Bornin.service.BirthdayServiceTest;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 
-// import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
-// @SpringBootTest
-// class BorninApplicationTests {
+@SpringBootTest
+@ActiveProfiles(value={"test"})
+class BorninApplicationTests {
 
-// 	@Autowired
-// 	private BirthdayController controller;
+	@BeforeClass
+	public static void setUpClass(){
+		ApplicationContext context = new AnnotationConfigApplicationContext(BorninApplication.class);
+	}
 
-// 	@Test
-// 	void contextLoads() {
-// 	}
+	@Autowired
+	private BirthdayController controller;
 
-// 	@Test
-// 	public void contextLoadsController() throws Exception {
-// 		assertThat(controller).isNotNull();
-// 	}
+ 	@Test
+	void contextLoads() {
+	}
 
-// }
+ 	@Test
+	public void contextLoadsController() throws Exception {
+ 		assertThat(controller).isNotNull();
+ 	}
+
+ }
