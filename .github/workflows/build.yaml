@@ -14,12 +14,6 @@ jobs:
           distribution: 'zulu' 
           java-version: '17'
 
-      - name: Hydrate environment
-        run: |-
-          export DB_USERNAME=${{ secrets.DB_USERNAME }}
-          export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-          export DB_NAME=${{ secrets.DB_NAME }}
-
       - name: Unit tests
         run: ./gradlew clean test
 
