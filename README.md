@@ -20,6 +20,23 @@ BornIn is a basic SpringBoot application that stores and manages user's date of 
 * `export db_pass=<database-password>`
 * `export db_ip=<database-ip-address>`
 
+###### Test gradle application
+`./gradlew clean test`
+
+###### Build gradle application
+`./gradlew build`
+
+###### Test endpoints locally
+```
+curl -X PUT localhost:8080/hello/ece?dateofBirth=2022-05-10
+curl -X GET localhost:8080/hello/ece
+```
+
+###### Test App Engine endpoints 
+```
+curl -X PUT https://rev-dev-project.ey.r.appspot.com/hello/ece?dateofBirth=2022-05-10
+curl -X GET https://rev-dev-project.ey.r.appspot.com/hello/ece 
+```
 
 ### Endpoints
 | Endpoint | Description | Request Type | Return Code | Return Body |
