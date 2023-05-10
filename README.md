@@ -43,5 +43,5 @@ curl -X GET https://rev-dev-project.ey.r.appspot.com/hello/ece
 | --- | --- | --- | --- | --- |
 | `/health` | check for application health | GET | 200 | "Healthy" |
 | `/hello/{username}` | save date of birth information for username | PUT | 204 | n/a |
-| `/hello/{username}` | save date of birth information for username | GET | 200 | "{ "message": "Hello, %s! Your birthday is in %d day(s)" }" **or** "{ "message": "Happy birthday!" }"  |
+| `/hello/{username}` | return saved date of birth information for username | GET | 200 | "{ "message": "Hello, %s! Your birthday is in N day(s)" }" **or** "{ "message": "Happy birthday!" }"  |
 
