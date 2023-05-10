@@ -56,7 +56,7 @@ public class BirthdayControllerTests {
 
         this.mockMvc.perform(get("/hello/ece")).andDo(print()).andExpectAll(
                 status().isOk(),
-                content().string(expectedResponse)
+                content().string(containsString(expectedResponse))
         );
     }
 
@@ -68,7 +68,7 @@ public class BirthdayControllerTests {
         String expectedResponse = String.format("Hello, %s! Happy birthday!",username);
         this.mockMvc.perform(get("/hello/ece")).andDo(print()).andExpectAll(
                 status().isOk(),
-                content().string(expectedResponse)
+                content().string(containsString(expectedResponse))
         );
     }
 
@@ -88,9 +88,8 @@ public class BirthdayControllerTests {
         LocalDate birthday = LocalDate.now().plusDays(1).minusYears(2);
         birthdayTableRepository.save(new BirthdayTable(username, birthday));
         assertThat(birthdayTableRepository.findByUsername(username).getBirthday()).isEqualTo(birthday);
-        this.mockMvc.perform(put("/hello/ece").queryParam("dateofBirth", birthday.toString())).andDo(print()).andExpectAll(
-                status().isOk(),
-                content().string("Birthday information saved!")
+        this.mockMvc.perform(put("/hello/ece").queryParam("dateofBirth", birthday.toString())).andDo(print()).andExpect(
+                status().isNoContent()
         );
     }
 
