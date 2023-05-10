@@ -1,8 +1,8 @@
 # BornIn
 
-BornIn is a basic SpringBoot application that stores and manages user's date of birth information. 
+BornIn is a basic SpringBoot application that stores and manages user's date of birth information. Try it out [here](https://rev-dev-project.ey.r.appspot.com/)! 
 
-### What you will need?
+### What will you need?
 #### Build&Run
 * JDK 17 or later
 * Gradle 7.3+
