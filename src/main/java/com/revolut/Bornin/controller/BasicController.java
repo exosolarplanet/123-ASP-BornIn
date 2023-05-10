@@ -12,7 +12,7 @@ public class BasicController {
         return ResponseEntity.ok("healthy");
     }
 
-    @GetMapping("/health")
+    @GetMapping("/")
     public ResponseEntity appEngineMainPage(){
         return ResponseEntity.noContent().build();
     }
