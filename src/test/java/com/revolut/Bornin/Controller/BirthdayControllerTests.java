@@ -48,6 +48,13 @@ public class BirthdayControllerTests {
     }
 
     @Test
+    public void shouldReturnNoContent() throws Exception {
+        this.mockMvc.perform(get("/")).andDo(print()).andExpect(
+                status().isNoContent()
+        );
+    }
+
+    @Test
     public void givenUsername_whenBirthdayIsInNDays_thenBirthdayControllerShouldReturnNoOfDaysUntilNextBirthday() throws Exception {
         String expectedResponse = String.format("Hello, %s! Your birthday is in %d day(s)", username, 1);
         LocalDate birthday = LocalDate.now().plusDays(1).minusYears(2);
@@ -88,7 +95,7 @@ public class BirthdayControllerTests {
         LocalDate birthday = LocalDate.now().plusDays(1).minusYears(2);
         birthdayTableRepository.save(new BirthdayTable(username, birthday));
         assertThat(birthdayTableRepository.findByUsername(username).getBirthday()).isEqualTo(birthday);
-        this.mockMvc.perform(put("/hello/ece").queryParam("dateofBirth", birthday.toString())).andDo(print()).andExpect(
+        this.mockMvc.perform(put("/hello/ece").queryParam("dateOfBirth", birthday.toString())).andDo(print()).andExpect(
                 status().isNoContent()
         );
     }
@@ -96,7 +103,7 @@ public class BirthdayControllerTests {
     @Test
     public void givenUsernameAndDateOfBirth_whenDateOfBirthIsInTheFuture_thenBirthdayControllerShouldReturn4xxClientError() throws Exception {
         LocalDate birthday = LocalDate.now().plusDays(1).plusYears(2);
-        this.mockMvc.perform(put("/hello/ece").queryParam("dateofBirth", birthday.toString())).andDo(print()).andExpectAll(
+        this.mockMvc.perform(put("/hello/ece").queryParam("dateOfBirth", birthday.toString())).andDo(print()).andExpectAll(
                 status().is4xxClientError(),
                 content().string(containsString("You must write a book about time travelling"))
         );
@@ -105,7 +112,7 @@ public class BirthdayControllerTests {
     @Test
     public void givenUsernameAndDateOfBirth_whenUsernameIsNotAllLetters_thenBirthdayControllerShouldReturn4xxClientError() throws Exception {
         LocalDate birthday = LocalDate.now().plusDays(1).minusYears(2);
-        this.mockMvc.perform(put("/hello/ece123.!").queryParam("dateofBirth", birthday.toString())).andDo(print()).andExpectAll(
+        this.mockMvc.perform(put("/hello/ece123.!").queryParam("dateOfBirth", birthday.toString())).andDo(print()).andExpectAll(
                 status().is4xxClientError(),
                 content().string("Please make sure username only includes letters")
         );
