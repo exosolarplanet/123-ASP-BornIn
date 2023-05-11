@@ -42,7 +42,7 @@ curl -X PUT localhost:8080/hello/<username>?dateOfBirth=<date-of-birth>
 curl -X GET localhost:8080/hello/<username>
 ```
 
-### Build&Testing with Github CI/CD workflows
+### Build & Testing with Github CI/CD Workflows
 * Build workflow is triggered by a push to main or a feature branch
 ```mermaid
 flowchart LR
