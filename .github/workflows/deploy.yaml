@@ -46,11 +46,11 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v1'
         with:
           version: '>= 363.0.0'
-#
-#      - name: Update App Version
-#        run: gcloud app deploy
+
+      - name: Update App Version
+        run: gcloud app deploy
 
       - name: Serving status
         run: |-
-          echo $(gcloud app describe | grep servingStatus) >> $GITHUB_STEP_SUMMARY
-          echo "See depployment at https://rev-dev-project.ey.r.appspot.com/" >> $GITHUB_STEP_SUMMARY
+          echo "### $(gcloud app describe | grep servingStatus)" >> $GITHUB_STEP_SUMMARY
+          echo "See deployment at https://rev-dev-project.ey.r.appspot.com/" >> $GITHUB_STEP_SUMMARY
