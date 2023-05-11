@@ -53,7 +53,7 @@ flowchart LR
 * Deployment workflow is triggered by a published Github release
 ```mermaid
 flowchart LR
-    id1(Repo Checkout) --> id2(Java Setup) --> id3(Authenticate to GCP) --> id4(Configure app.yaml) --> id5(Gradle Test) --> id6(Upload Test Report) --> id7(Gradle Build)
+    id1(Repo Checkout) --> id2(Java Setup) --> id3(Authenticate to GCP) --> id4(Configure app.yaml) --> id5(Gradle Test) --> id6(Upload Test Report) --> id7(Gradle Build) --> id8(Setup Cloud SKD) --> id9(App Engine Deploy) --> id10(App Engine Deploy Status)
 ```
 
 ###### Test App Engine endpoints
