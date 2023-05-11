@@ -29,6 +29,3 @@ jobs:
 
       - name: Gradle build
         run: ./gradlew build
-
-      - name: Gradle test run
-        run: ./gradlew bootRunLocal
