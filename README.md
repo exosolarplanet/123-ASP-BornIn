@@ -42,13 +42,6 @@ curl -X PUT localhost:8080/hello/<username>?dateOfBirth=<date-of-birth>
 curl -X GET localhost:8080/hello/<username>
 ```
 
-###### Test App Engine endpoints 
-```
-curl -X GET https://rev-dev-project.ey.r.appspot.com/health
-curl -X PUT https://rev-dev-project.ey.r.appspot.com/hello/<username>?dateOfBirth=<date-of-birth>
-curl -X GET https://rev-dev-project.ey.r.appspot.com/hello/<username> 
-```
-
 ### Build&Testing with Github CI/CD workflows
 * Build workflow is triggered by a push to main or a feature branch
 ```mermaid
@@ -61,6 +54,13 @@ flowchart LR
 ```mermaid
 flowchart LR
     id1(Repo Checkout) --> id2(Java Setup) --> id3(Authenticate to GCP) --> id4(Configure app.yaml) --> id5(Gradle Test) --> id6(Upload Test Report) --> id7(Gradle Build)
+```
+
+###### Test App Engine endpoints
+```
+curl -X GET https://rev-dev-project.ey.r.appspot.com/health
+curl -X PUT https://rev-dev-project.ey.r.appspot.com/hello/<username>?dateOfBirth=<date-of-birth>
+curl -X GET https://rev-dev-project.ey.r.appspot.com/hello/<username> 
 ```
 
 
