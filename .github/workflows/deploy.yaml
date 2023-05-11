@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: unit-test-report
-          path: /build/reports/tests/test/index.html
+          path: /build/reports
 
       - name: Gradle build
         run: ./gradlew build
