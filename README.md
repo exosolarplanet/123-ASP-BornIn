@@ -17,7 +17,7 @@ The main components are:
 | Endpoint | Description | Request Type | Return Code | Return Body |
 | --- | --- | --- | --- | --- |
 | `/health` | check for application health | GET | 200 | "Healthy" |
-| `/hello/{username}` | save date of birth information for username | PUT | 204 | n/a |
+| `/hello/{username}?dateOfBirth` | save date of birth information for username | PUT | 204 | n/a |
 | `/hello/{username}` | return saved date of birth information for username | GET | 200 | "{ "message": "Hello, <username>! Your birthday is in N day(s)" }" **or** "{ "message": "Happy birthday!" }"  |
 
 ## Quickstart
@@ -29,10 +29,10 @@ The main components are:
 `./gradlew clean test`
 
 ###### Build gradle application
-`./gradlew build`
+`./gradlew clean build`
 
 ###### Run gradle application
-`./gradlew bootRunLocal`
+`./gradlew clean bootRunLocal`
 >bootRunLocal task sets spring profile for local running and testing purposes
 
 ###### Test endpoints locally

@@ -4,7 +4,7 @@ on:
     types: [published]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Repo Checkout
@@ -28,7 +28,7 @@ jobs:
           sed -i 's/DB_PASS/'${{secrets.DB_PASSWORD}}'/g' ./src/main/appengine/app.yaml
           sed -i 's/DB_NAME/'${{secrets.DB_NAME}}'/g' ./src/main/appengine/app.yaml
           sed -i 's/DB_IP/'${{secrets.DB_IP}}'/g' ./src/main/appengine/app.yaml
-          sed -i 's/DB_IP/'${{secrets.DB_CONNECTION}}'/g' ./src/main/appengine/app.yaml
+          sed -i 's/DB_CONNECTION/'${{secrets.DB_CONNECTION}}'/g' ./src/main/appengine/app.yaml
 
       - name: Unit tests
         run: ./gradlew clean test
