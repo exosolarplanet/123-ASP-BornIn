@@ -8,8 +8,7 @@ BornIn is a basic SpringBoot application that stores and manages user's date of 
 * Gradle 7.3+
 
 #### Deployment 
-All infrastructure configuration needed for deploying this application can be found in [this repository](https://github.com/exosolarplanet/terraform-config).
-The main components are:
+Deployment can be only made through creating a new Github release which will trigger the deployment workflow. All infrastructure configuration of this application can be found in [this repository](https://github.com/exosolarplanet/terraform-config). The main components include:
 * App Engine
 * Cloud SQL
 
@@ -46,7 +45,7 @@ curl -X GET localhost:8080/hello/<username>
 * Build workflow is triggered by a push to main or a feature branch
 ```mermaid
 flowchart LR
-    id1(Repo Checkout) --> id2(Java Setup) --> id3(Gradle Test) --> id4(Upload Test Report) --> id5(Gradle Build)
+    id1(Repo Checkout) --> id2(Java Setup) --> id3(CodeQL Setup) --> id4(Gradle Test) --> id5(Upload Test Report) --> id6(Gradle Build) --> id7(CodeQL Analysis) --> id8(Upload CodeQL Results)
 ```
 
 ### Deployment
