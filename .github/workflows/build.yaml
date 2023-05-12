@@ -17,6 +17,11 @@ jobs:
         with:
           distribution: 'zulu' 
           java-version: '17'
+      
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: java
 
       - name: Unit tests
         run: ./gradlew clean test --info
@@ -29,3 +34,6 @@ jobs:
 
       - name: Gradle build
         run: ./gradlew build
+      
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
