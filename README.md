@@ -21,22 +21,22 @@ Deployment can be only made through creating a new Github release which will tri
 
 ## Quickstart
 ### Local Build & Testing
-###### Clone project
+##### Clone project
 `git clone https://github.com/exosolarplanet/BornIn.git`
     
-###### Test gradle application
+##### Test gradle application
 `./gradlew clean test`
 
-###### Build gradle application
+##### Build gradle application
 `./gradlew clean build`
 
 > You may need to login to GCP with `gcloud auth login` command before trying to run the application
 
-###### Run gradle application
+##### Run gradle application
 `./gradlew clean bootRunLocal`
 >bootRunLocal task sets spring profile for local running and testing purposes
 
-###### Test endpoints locally
+##### Test endpoints locally
 ```
 curl -X GET localhost:8080/health
 curl -X PUT localhost:8080/hello/<username>?dateOfBirth=<date-of-birth>
