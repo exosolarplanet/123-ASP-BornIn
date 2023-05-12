@@ -2,13 +2,10 @@ package com.revolut.Bornin.jpa;
 
 import com.revolut.Bornin.jpa.repository.BirthdayTableRepository;
 import com.revolut.Bornin.jpa.table.BirthdayTable;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-
 
 import java.time.LocalDate;
 
