@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
     steps:
       - name: Repo Checkout
         uses: actions/checkout@v3
@@ -17,6 +19,12 @@ jobs:
         with:
           distribution: 'zulu' 
           java-version: '17'
+      
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: java
+          queries: security-and-quality
 
       - name: Unit tests
         run: ./gradlew clean test --info
@@ -25,7 +33,16 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: unit-test-report
-          path: /build/reports/tests/test/index.html
+          path: build/reports
 
       - name: Gradle build
         run: ./gradlew build
+      
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+      
+      - name: Upload CodeQL Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: codeql-results
+          path: /home/runner/work/BornIn/results/java.sarif
