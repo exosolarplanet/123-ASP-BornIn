@@ -22,6 +22,7 @@ jobs:
         uses: github/codeql-action/init@v2
         with:
           languages: java
+          queries: security-and-quality
 
       - name: Unit tests
         run: ./gradlew clean test --info
