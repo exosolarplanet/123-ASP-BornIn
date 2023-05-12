@@ -23,12 +23,14 @@ Deployment can be only made through creating a new Github release which will tri
 ### Local Build & Testing
 ###### Clone project
 `git clone https://github.com/exosolarplanet/BornIn.git`
-
+    
 ###### Test gradle application
 `./gradlew clean test`
 
 ###### Build gradle application
 `./gradlew clean build`
+
+> You may need to login to GCP with `gcloud auth login` command before trying to run the application
 
 ###### Run gradle application
 `./gradlew clean bootRunLocal`
