@@ -4,6 +4,7 @@ on:
     branches:
       - 'feature/*'
       - 'main'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -37,12 +38,3 @@ jobs:
 
       - name: Gradle build
         run: ./gradlew build
-      
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
-      
-      - name: Upload CodeQL Results
-        uses: actions/upload-artifact@v3
-        with:
-          name: codeql-results
-          path: /home/runner/work/BornIn/results/java.sarif
