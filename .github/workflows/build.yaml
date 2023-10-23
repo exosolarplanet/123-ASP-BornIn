@@ -46,3 +46,8 @@ jobs:
         with:
           name: my-artifact
           path: artefact.txt
+
+      - uses: exosolarplanet/pr-bot@main
+        with:
+          test: "test"
+            
