@@ -47,7 +47,7 @@ jobs:
           name: my-artifact
           path: artefact.txt
 
-      - uses: exosolarplanet/pr-bot@main
+      - uses: exosolarplanet/pr-boot@main
         with:
-          test: "test"
+          who-to-greet: "test"
             
