@@ -48,6 +48,8 @@ jobs:
       #     path: artefact.txt
 
       - uses: exosolarplanet/pr-boot@main
+        env:
+          token: ${{ secrets.GITHUB_TOKEN }}
         with:
           image-name: 'my-image'
           image-version: 'some-version'
