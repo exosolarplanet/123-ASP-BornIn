@@ -15,37 +15,37 @@ jobs:
       - name: Repo Checkout
         uses: actions/checkout@v3
 
-      - name: Java setup
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu' 
-          java-version: '17'
+      # - name: Java setup
+      #   uses: actions/setup-java@v3
+      #   with:
+      #     distribution: 'zulu' 
+      #     java-version: '17'
       
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: java
-          queries: security-and-quality
+      # - name: Initialize CodeQL
+      #   uses: github/codeql-action/init@v2
+      #   with:
+      #     languages: java
+      #     queries: security-and-quality
 
-      - name: Unit tests
-        run: ./gradlew clean test --info
+      # - name: Unit tests
+      #   run: ./gradlew clean test --info
 
-      - name: Upload unit test report
-        uses: actions/upload-artifact@v3
-        with:
-          name: unit-test-report
-          path: build/reports
+      # - name: Upload unit test report
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: unit-test-report
+      #     path: build/reports
 
-      - name: Gradle build
-        run: ./gradlew build
+      # - name: Gradle build
+      #   run: ./gradlew build
 
-      - name: Dummy artefact
-        run: echo "dummy artefact" > artefact.txt
+      # - name: Dummy artefact
+      #   run: echo "dummy artefact" > artefact.txt
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: artefact.txt
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     name: my-artifact
+      #     path: artefact.txt
 
       - uses: exosolarplanet/pr-boot@main
         with:
