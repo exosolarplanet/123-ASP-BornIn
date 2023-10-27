@@ -49,5 +49,7 @@ jobs:
 
       - uses: exosolarplanet/pr-boot@main
         with:
-          who-to-greet: "test"
+          image-name: 'my-image'
+          image-version: 'some-version'
+          artifactory-path: 'path'
             
