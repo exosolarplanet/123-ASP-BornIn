@@ -2,9 +2,11 @@ name: Deploy Application
 on: 
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   deploy:
+    concurrency: build
     runs-on: ubuntu-latest
     steps:
       - name: Repo Checkout
@@ -16,41 +18,41 @@ jobs:
           distribution: 'zulu' 
           java-version: '17'
       
-      - name: Authenticate to GCP
-        uses: 'google-github-actions/auth@v1'
-        with:
-          project_id: 'rev-dev-project'
-          credentials_json: ${{ secrets.SERVICE_ACCOUNT }}
+      # - name: Authenticate to GCP
+      #   uses: 'google-github-actions/auth@v1'
+      #   with:
+      #     project_id: 'rev-dev-project'
+      #     credentials_json: ${{ secrets.SERVICE_ACCOUNT }}
       
-      - name: Configure app.yaml
-        run: |-
-          sed -i 's/DB_USER/'${{secrets.DB_USERNAME}}'/g' ./src/main/appengine/app.yaml
-          sed -i 's/DB_PASS/'${{secrets.DB_PASSWORD}}'/g' ./src/main/appengine/app.yaml
-          sed -i 's/DB_NAME/'${{secrets.DB_NAME}}'/g' ./src/main/appengine/app.yaml
-          sed -i 's/DB_IP/'${{secrets.DB_IP}}'/g' ./src/main/appengine/app.yaml
-          sed -i 's/DB_CONNECTION/'${{secrets.DB_CONNECTION}}'/g' ./src/main/appengine/app.yaml
+      # - name: Configure app.yaml
+      #   run: |-
+      #     sed -i 's/DB_USER/'${{secrets.DB_USERNAME}}'/g' ./src/main/appengine/app.yaml
+      #     sed -i 's/DB_PASS/'${{secrets.DB_PASSWORD}}'/g' ./src/main/appengine/app.yaml
+      #     sed -i 's/DB_NAME/'${{secrets.DB_NAME}}'/g' ./src/main/appengine/app.yaml
+      #     sed -i 's/DB_IP/'${{secrets.DB_IP}}'/g' ./src/main/appengine/app.yaml
+      #     sed -i 's/DB_CONNECTION/'${{secrets.DB_CONNECTION}}'/g' ./src/main/appengine/app.yaml
 
-      - name: Unit tests
-        run: ./gradlew clean test
+      # - name: Unit tests
+      #   run: ./gradlew clean test
 
-      - name: Upload unit test report
-        uses: actions/upload-artifact@v3
-        with:
-          name: unit-test-report
-          path: /build/reports
+      # - name: Upload unit test report
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: unit-test-report
+      #     path: /build/reports
 
-      - name: Gradle build
-        run: ./gradlew build
+      # - name: Gradle build
+      #   run: ./gradlew build
         
-      - name: Set up Cloud SDK
-        uses: 'google-github-actions/setup-gcloud@v1'
-        with:
-          version: '>= 363.0.0'
+      # - name: Set up Cloud SDK
+      #   uses: 'google-github-actions/setup-gcloud@v1'
+      #   with:
+      #     version: '>= 363.0.0'
 
-      - name: Update App Version
-        run: gcloud app deploy
+      # - name: Update App Version
+      #   run: gcloud app deploy
 
-      - name: Serving status
-        run: |-
-          echo "### $(gcloud app describe | grep servingStatus)" >> $GITHUB_STEP_SUMMARY
-          echo "See deployment at https://rev-dev-project.ey.r.appspot.com/" >> $GITHUB_STEP_SUMMARY
+      # - name: Serving status
+      #   run: |-
+      #     echo "### $(gcloud app describe | grep servingStatus)" >> $GITHUB_STEP_SUMMARY
+      #     echo "See deployment at https://rev-dev-project.ey.r.appspot.com/" >> $GITHUB_STEP_SUMMARY
