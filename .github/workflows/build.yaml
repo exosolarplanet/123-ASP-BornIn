@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: read-all
+    permissions: write-all
     steps:
       - name: Repo Checkout
         uses: actions/checkout@v3
