@@ -52,6 +52,6 @@ jobs:
           token: ${{ secrets.TOKEN }}
         with:
           image-name: 'my-image'
-          image-version: 'some-version'
+          image-version: '1.2.3'
           artifactory-path: 'path'
             
