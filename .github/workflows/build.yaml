@@ -49,7 +49,7 @@ jobs:
 
       - uses: exosolarplanet/pr-boot@main
         env:
-          token: ${{ secrets.TOKEN }}
+          token: ${{ github.token }}
         with:
           image-name: 'my-image'
           image-version: '1.2.6'
