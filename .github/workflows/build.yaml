@@ -47,11 +47,8 @@ jobs:
       #     name: my-artifact
       #     path: artefact.txt
 
-      - uses: exosolarplanet/pr-boot@main
+      - uses: exosolarplanet/bot-pr@main
         env:
           token: ${{ secrets.TOKEN }}
         with:
-          image-name: 'my-image'
-          image-version: '1.2.6'
-          artifactory-path: 'path'
-            
+          who-to-greet: 'gerald'
